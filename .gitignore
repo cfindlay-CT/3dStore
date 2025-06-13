@@ -57,3 +57,5 @@ __pycache__/
 ehthumbs.db
 
 .angular/cache/19.2.11/store/
+
+src/environments/
