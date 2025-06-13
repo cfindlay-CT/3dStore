@@ -16,6 +16,10 @@ export class DataService {
    }
 
    getProducts() : Observable<Product[]> {
-    return this.client.get<Product[]>(this.apiUrl + '/products');
+    return this.client.get<Product[]>(this.apiUrl + '/supabase/products');
+   }
+
+   getProductImages(productId: string): Observable<string[]> {
+    return this.client.get<string[]>(`${this.apiUrl}/supabase/products/images`);
    }
 }
