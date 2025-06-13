@@ -34,7 +34,7 @@ jspm_packages/
 
 # Optional npm cache directory
 .npm/
-
+snapshot/
 # Local history for JetBrains
 .localhistory/
 
@@ -55,3 +55,5 @@ __pycache__/
 
 # Windows image thumbs
 ehthumbs.db
+
+.angular/cache/19.2.11/store/
