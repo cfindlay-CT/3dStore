@@ -9,20 +9,29 @@ jobs:
   build_and_deploy_job:
     name: Build and Deploy to Production
     runs-on: ubuntu-latest
-    environment: prod
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
 
-      - name: Build And Deploy to Azure Static Web Apps
-        id: builddeploy
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app (Production)
+        run: npm run build -- --configuration production
+
+      - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_COAST_062E48310 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"                 # Root of your Angular project
-          api_location: ""                  # Set if you have an API
-          output_location: "dist/store/browser" # Path to built Angular output
+          app_location: "/" # Root of your app
+          output_location: "dist/store/browser"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
