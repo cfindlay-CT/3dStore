@@ -1,0 +1,1 @@
+export { ProductGridComponent } from './products-grid.component';

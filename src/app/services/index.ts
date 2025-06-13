@@ -1,1 +1,1 @@
-export { NodeServiceService } from './node-service.service';
+export { DataService } from './data.service';
