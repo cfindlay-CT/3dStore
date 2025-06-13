@@ -1,13 +1,16 @@
-name: Azure Static Web Apps CI/CD - Production
+name: Deploy Angular App to Azure Static Web Apps
 
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
 
 jobs:
-  build_and_deploy_job:
-    name: Build and Deploy to Production
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -24,6 +27,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Inject production secrets
+        run: |
+          echo "export const environment = {" > src/environments/environment.prod.ts
+          echo "  production: true," >> src/environments/environment.prod.ts
+          echo "  API_KEY: '${{ secrets.API_KEY }}'" >> src/environments/environment.prod.ts
+          echo "};" >> src/environments/environment.prod.ts
+
       - name: Build Angular app (Production)
         run: npm run build -- --configuration production
 
@@ -32,6 +42,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_COAST_062E48310 }}
           action: "upload"
-          app_location: "/" # Root of your app
+          app_location: "/" 
           output_location: "dist/store/browser"
           repo_token: ${{ secrets.GITHUB_TOKEN }}
