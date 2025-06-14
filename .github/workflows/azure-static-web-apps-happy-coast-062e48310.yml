@@ -30,13 +30,16 @@ jobs:
       - name: Inject production secrets
         run: |
           echo "export const environment = {" > src/environments/environment.prod.ts
-            echo "  production: true," >> src/environments/environment.prod.ts
-            echo "  serviceUrl: '${{ secrets.SERVICE_URL }}'," >> src/environments/environment.prod.ts
+          echo "  production: true," >> src/environments/environment.prod.ts
+          echo "  serviceUrl: '${{ secrets.SERVICE_URL }}'," >> src/environments/environment.prod.ts
           echo "  apiKey: '${{ secrets.API_KEY }}'" >> src/environments/environment.prod.ts
           echo "};" >> src/environments/environment.prod.ts
 
       - name: Build Angular app (Production)
         run: npm run build -- --configuration production
+
+      - name: Copy staticwebapp.config.json to output
+        run: cp staticwebapp.config.json dist/store/browser/
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
