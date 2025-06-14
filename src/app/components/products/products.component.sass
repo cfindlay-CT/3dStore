@@ -1,7 +1,13 @@
 :host
   display: flex
-  justify-content: center
-  align-items: center
-  height: 100vh
   flex-direction: column
+  justify-content: flex-start
+  align-items: center
+  min-height: 100vh
   text-align: center
+  padding: 1rem
+
+  @media (max-width: 600px)
+    min-height: unset
+    height: auto
+    padding: 0.5rem
