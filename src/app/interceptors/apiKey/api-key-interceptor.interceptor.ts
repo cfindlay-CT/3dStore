@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 export const apiKeyInterceptor: HttpInterceptorFn = (req, next) => {
-  const apiKey = environment.API_KEY;
+  const apiKey = environment.apiKey;
   if (apiKey) {
     const cloned = req.clone({
       setHeaders: { 'x-api-key': apiKey }

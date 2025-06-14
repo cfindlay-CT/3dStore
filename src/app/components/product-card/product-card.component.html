@@ -1,5 +1,12 @@
 <div class="product-card">
-  <!-- <img [src]="product.imageUrl" alt="Product image" /> -->
+  <img [src]="product.images[0]" alt="Product image" *ngIf="product.images && product.images.length > 0" />
+  <!-- <owl-carousel-o [options]="{items: 1, dots: true, nav: true}">
+    <ng-container *ngFor="let img of product.images">
+      <ng-template carouselSlide>
+        <img [src]="img" alt="Product image" />
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o> -->
   <div class="details">
     <p class="description">{{ product.description }}</p>
     <p class="price">${{ product.price.toFixed(2) }}</p>

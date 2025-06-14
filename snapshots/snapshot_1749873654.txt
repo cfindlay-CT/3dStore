@@ -1,0 +1,680 @@
+
+--- FILE: C:\projects\3dstore\dist\store\browser\index.html ---
+<!doctype html>
+<html lang="en" data-beasties-container>
+<head>
+  <meta charset="utf-8">
+  <title>Store</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles-5INURTSO.css"></head>
+<body>
+  <app-root></app-root>
+<script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-6T6ROJRX.js" type="module"></script></body>
+</html>
+
+
+--- FILE: C:\projects\3dstore\src\index.html ---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Store</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+
+
+--- FILE: C:\projects\3dstore\src\main.ts ---
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, appConfig)
+  .catch((err) => console.error(err));
+
+
+--- FILE: C:\projects\3dstore\src\styles.sass ---
+/* You can add global styles to this file, and also import other style files */
+
+
+--- FILE: C:\projects\3dstore\src\app\app.component.html ---
+<!-- Top Menu -->
+<app-menu></app-menu>
+
+<!-- Page Content -->
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+
+
+--- FILE: C:\projects\3dstore\src\app\app.component.sass ---
+.content
+  padding: 2rem
+
+
+--- FILE: C:\projects\3dstore\src\app\app.component.spec.ts ---
+import { TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+    }).compileComponents();
+  });
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have the 'store' title`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('store');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, store');
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\app.component.ts ---
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { MenuComponent } from './components/menu';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, MenuComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.sass'
+})
+export class AppComponent {
+  title = 'store';
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\app.config.ts ---
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { routes } from './app.routes';
+import { apiKeyInterceptor } from './interceptors/apiKey';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient(withInterceptors([apiKeyInterceptor])),
+    provideAnimations() // Provide animations support
+  ]
+};
+
+--- FILE: C:\projects\3dstore\src\app\app.routes.ts ---
+import { Routes } from '@angular/router';
+import { HomeComponent, ProductsComponent } from './components/';
+
+export const routes: Routes = [
+    { path: '', component: HomeComponent },
+    { path: 'products', component: ProductsComponent }
+];
+
+
+--- FILE: C:\projects\3dstore\src\app\components\index.ts ---
+export {  HomeComponent } from './home';
+export { MenuComponent } from './menu';
+export { ProductsComponent } from './products';
+export { ProductCardComponent } from './product-card';
+export { ProductGridComponent } from './products-grid';
+
+--- FILE: C:\projects\3dstore\src\app\components\home\home.component.html ---
+<p>home works!</p>
+
+
+--- FILE: C:\projects\3dstore\src\app\components\home\home.component.sass ---
+
+
+--- FILE: C:\projects\3dstore\src\app\components\home\home.component.spec.ts ---
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomeComponent } from './home.component';
+
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HomeComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\components\home\home.component.ts ---
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  imports: [],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.sass'
+})
+export class HomeComponent {
+
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\components\home\index.ts ---
+export { HomeComponent } from './home.component';
+
+--- FILE: C:\projects\3dstore\src\app\components\menu\index.ts ---
+export { MenuComponent } from './menu.component';
+
+--- FILE: C:\projects\3dstore\src\app\components\menu\menu.component.html ---
+<nav class="menu">
+  <ul>
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li><a [routerLink]="['/products']">Products</a></li>
+    <li><a routerLink="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+--- FILE: C:\projects\3dstore\src\app\components\menu\menu.component.sass ---
+.menu
+  background-color: #333
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    display: flex
+
+    li
+      margin: 0
+
+      a
+        display: block
+        padding: 1rem
+        color: white
+        text-decoration: none
+
+        &:hover
+          background-color: #555
+
+
+--- FILE: C:\projects\3dstore\src\app\components\menu\menu.component.spec.ts ---
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { MenuComponent } from './menu.component';
+
+describe('MenuComponent', () => {
+  let component: MenuComponent;
+  let fixture: ComponentFixture<MenuComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MenuComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(MenuComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\components\menu\menu.component.ts ---
+import { Component } from '@angular/core';
+//import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-menu',
+  imports: [ RouterModule ],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.sass'
+})
+export class MenuComponent {
+
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\components\product-card\index.ts ---
+export { ProductCardComponent } from './product-card.component';
+
+--- FILE: C:\projects\3dstore\src\app\components\product-card\product-card.component.html ---
+<div class="product-card">
+  <img [src]="product.images[0]" alt="Product image" *ngIf="product.images && product.images.length > 0" />
+  <!-- <owl-carousel-o [options]="{items: 1, dots: true, nav: true}">
+    <ng-container *ngFor="let img of product.images">
+      <ng-template carouselSlide>
+        <img [src]="img" alt="Product image" />
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o> -->
+  <div class="details">
+    <p class="description">{{ product.description }}</p>
+    <p class="price">${{ product.price.toFixed(2) }}</p>
+    <p class="sku">SKU: {{ product.sku}}</p>
+  </div>
+</div>
+
+
+--- FILE: C:\projects\3dstore\src\app\components\product-card\product-card.component.sass ---
+.product-card
+  display: flex
+  flex-direction: column
+  align-items: center
+  border: 1px solid #ddd
+  padding: 1rem
+  border-radius: 0.5rem
+  max-width: 250px
+  background: #fff
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1)
+
+  img
+    width: 100%
+    height: auto
+    object-fit: contain
+    margin-bottom: 0.5rem
+
+  .details
+    text-align: center
+
+    .description
+      font-size: 1rem
+      margin-bottom: 0.25rem
+
+    .price
+      font-weight: bold
+      color: #333
+      margin-bottom: 0.25rem
+
+    .sku
+      font-size: 0.875rem
+      color: #888
+
+
+--- FILE: C:\projects\3dstore\src\app\components\product-card\product-card.component.spec.ts ---
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ProductCardComponent } from './product-card.component';
+
+describe('ProductCardComponent', () => {
+  let component: ProductCardComponent;
+  let fixture: ComponentFixture<ProductCardComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ProductCardComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ProductCardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\components\product-card\product-card.component.ts ---
+import { Component, Input } from '@angular/core';
+import { Product } from '../../models';
+import { CarouselModule } from 'ngx-owl-carousel-o'
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-product-card',
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.sass'], 
+  imports: [
+    CarouselModule,
+    CommonModule
+  ]
+})
+export class ProductCardComponent {
+  @Input() product!: Product;
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products\index.ts ---
+export { ProductsComponent } from './products.component';
+
+--- FILE: C:\projects\3dstore\src\app\components\products\products.component.html ---
+<h1>Product Details Page</h1>
+<app-product-grid [products]="products"></app-product-grid>
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products\products.component.sass ---
+:host
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100vh
+  flex-direction: column
+  text-align: center
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products\products.component.spec.ts ---
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ProductsComponent } from './products.component';
+
+describe('ProductsComponent', () => {
+  let component: ProductsComponent;
+  let fixture: ComponentFixture<ProductsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ProductsComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ProductsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products\products.component.ts ---
+import { Component } from '@angular/core';
+import { ProductGridComponent } from '../products-grid'; // adjust path as needed
+import { CommonModule } from '@angular/common';
+import { DataService } from '../../services';
+import { Product } from '../../models';
+
+@Component({
+  selector: 'app-products',
+  standalone: true,
+  imports: [ CommonModule, ProductGridComponent ],
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.sass'
+})
+
+export class ProductsComponent {
+
+  products: Array<Product> = [];
+
+  getProducts(): Array<Product> {
+    return this.products;
+  }
+
+  /**
+   *
+   */
+  constructor(private dataServ: DataService) {    
+  }
+
+  ngOnInit(): void {
+    this.getProductsFromServices();
+  }
+
+
+  getProductsFromServices() {
+    var test = this.dataServ.getProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
+  }
+ }
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products-grid\index.ts ---
+export { ProductGridComponent } from './products-grid.component';
+
+--- FILE: C:\projects\3dstore\src\app\components\products-grid\products-grid.component.html ---
+<div class="product-grid" [ngStyle]="{ 'grid-template-columns': 'repeat(' + columns + ', 1fr)' }">
+  <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+</div>
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products-grid\products-grid.component.sass ---
+.product-grid
+  display: grid
+  grid-auto-flow: column
+  grid-template-rows: repeat(4, 1fr)
+  justify-content: center
+  gap: 2rem
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products-grid\products-grid.component.spec.ts ---
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ProductsGridComponent } from './products-grid.component';
+
+describe('ProductsGridComponent', () => {
+  let component: ProductsGridComponent;
+  let fixture: ComponentFixture<ProductsGridComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ProductsGridComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ProductsGridComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\components\products-grid\products-grid.component.ts ---
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Product } from '../../models/product';
+import { ProductCardComponent } from '../product-card';
+
+@Component({
+  selector: 'app-product-grid',
+  templateUrl: './products-grid.component.html',
+  styleUrls: ['./products-grid.component.sass'],
+  imports: [ProductCardComponent, CommonModule]
+})
+export class ProductGridComponent {
+  @Input() products: Product[] = [];
+  @Input() columns: number = 4;
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\interceptors\apiKey\api-key-interceptor.interceptor.spec.ts ---
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient, HttpClient, withInterceptors } from '@angular/common/http';
+import { apiKeyInterceptor } from './api-key-interceptor.interceptor';
+import { environment } from '../../../environments/environment';
+
+describe('apiKeyInterceptor (HttpInterceptorFn)', () => {
+  let http: HttpClient;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        provideHttpClient(withInterceptors([apiKeyInterceptor]))
+      ]
+    });
+    http = TestBed.inject(HttpClient);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should add x-api-key header', () => {
+    http.get('/test').subscribe();
+    const req = httpMock.expectOne('/test');
+    expect(req.request.headers.get('x-api-key')).toBe(environment.apiKey);
+    req.flush({});
+  });
+});
+
+--- FILE: C:\projects\3dstore\src\app\interceptors\apiKey\api-key-interceptor.interceptor.ts ---
+import { HttpInterceptorFn } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+
+export const apiKeyInterceptor: HttpInterceptorFn = (req, next) => {
+  const apiKey = environment.apiKey;
+  if (apiKey) {
+    const cloned = req.clone({
+      setHeaders: { 'x-api-key': apiKey }
+    });
+    return next(cloned);
+  }
+  return next(req);
+};
+
+--- FILE: C:\projects\3dstore\src\app\interceptors\apiKey\index.ts ---
+export * from './api-key-interceptor.interceptor';
+
+--- FILE: C:\projects\3dstore\src\app\models\index.ts ---
+export { Product } from './product';
+
+--- FILE: C:\projects\3dstore\src\app\models\product.spec.ts ---
+import { Product } from './product';
+
+describe('Product', () => {
+  it('should create an instance', () => {
+    expect(new Product()).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\models\product.ts ---
+export class Product {
+  productId!: number;
+  name!: string;
+  price!: number;
+  images?: Array<object>[];
+  description?: string;
+  sku?: string;
+  printType?: string;
+  materiaId?: number;
+  estimatedPrintTime?: number;
+
+  /**
+   *
+   */
+  constructor() {
+    
+  }
+
+  parseFromJSON(dataFromDb: string) {
+
+  }
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\services\data.service.spec.ts ---
+import { TestBed } from '@angular/core/testing';
+
+import { DataService } from './data.service';
+
+describe('DataService', () => {
+  let service: DataService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(DataService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+
+
+--- FILE: C:\projects\3dstore\src\app\services\data.service.ts ---
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../models';
+import { environment } from '../../environments';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  private apiUrl: string;
+
+  constructor(private client: HttpClient) {
+    this.apiUrl = environment.serviceUrl;
+   }
+
+   getProducts() : Observable<Product[]> {
+    return this.client.get<Product[]>(this.apiUrl + '/supabase/products');
+   }
+
+   getProductImages(productId: string): Observable<string[]> {
+    return this.client.get<string[]>(`${this.apiUrl}/supabase/products/images`);
+   }
+}
+
+
+--- FILE: C:\projects\3dstore\src\app\services\index.ts ---
+export { DataService } from './data.service';
+
+--- FILE: C:\projects\3dstore\src\environments\environment.prod.ts ---
+// src/environments/environment.ts
+// This file can be replaced during build by using the `fileReplacements` array.
+// This file is generrated with GitHub Actions and contains the environment variables
+
+
+
+--- FILE: C:\projects\3dstore\src\environments\environment.ts ---
+// src/environments/environment.ts
+export const environment = {
+  production: false,
+  serviceUrl: 'http://localhost:3000/api',
+  apiKey: 'b4ffd001e10f67e9410a51110dbe1954f726c4c44ff8a883a80bddc470fd7880'
+};
+
+
+--- FILE: C:\projects\3dstore\src\environments\index.ts ---
+export { environment } from './environment';

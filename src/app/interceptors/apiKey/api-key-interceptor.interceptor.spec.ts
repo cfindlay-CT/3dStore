@@ -26,7 +26,7 @@ describe('apiKeyInterceptor (HttpInterceptorFn)', () => {
   it('should add x-api-key header', () => {
     http.get('/test').subscribe();
     const req = httpMock.expectOne('/test');
-    expect(req.request.headers.get('x-api-key')).toBe(environment.API_KEY);
+    expect(req.request.headers.get('x-api-key')).toBe(environment.apiKey);
     req.flush({});
   });
 });
