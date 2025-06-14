@@ -1,6 +1,4 @@
 // src/environments/environment.ts
-export const environment = {
-  production: true,
-  serviceUrl: 'https://nodeapi-e9a4bwgncvbef6by.eastus2-01.azurewebsites.net/api/',
-  apiKey: ''
-};
+// This file can be replaced during build by using the `fileReplacements` array.
+// This file is generrated with GitHub Actions and contains the environment variables
+
