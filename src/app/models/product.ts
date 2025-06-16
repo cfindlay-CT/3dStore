@@ -3,11 +3,13 @@ export class Product {
   name!: string;
   price!: number;
   images?: Array<object>[];
-  description?: string;
+  longDescription?: string;
+  shortDescription?: string;
   sku?: string;
   printType?: string;
   materiaId?: number;
   estimatedPrintTime?: number;
+  size?: string;
 
   /**
    *
