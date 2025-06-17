@@ -1,1 +1,50 @@
-<p>home works!</p>
+<div class="layout">
+  <aside class="sidebar left">
+    <!-- Left sidebar content (e.g., menu, categories) -->
+  </aside>
+
+  <main class="main-content">
+    <div class="home-hero">
+      <svg class="hero-bg" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#ffffff33" fill-opacity="1" d="M0,64L60,80C120,96,240,128,360,160C480,192,600,224,720,224C840,224,960,192,1080,181.3C1200,171,1320,181,1380,186.7L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+      </svg>
+
+      <h1>Welcome to Custom 3D Prints Now</h1>
+      <p>
+        Discover a world of creativity and innovation with our custom 3D-printed products. Whether you’re looking for unique gifts, practical solutions, or inspiration for your next project, we have something for everyone.
+      </p>
+      <a [routerLink]="['/products']" class="cta-btn">Browse Products</a>
+    </div>
+
+    <section class="features">
+      <h2>Why Shop With Us?</h2>
+      <ul>
+        <li>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-11H7v2h6V7z"/></svg>
+          <strong>High-Quality Prints:</strong> Precision and durability in every item.
+        </li>
+        <li>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M4 4h12v2H4V4zm0 5h8v2H4V9zm0 5h12v2H4v-2z"/></svg>
+          <strong>Customization:</strong> Choose your color and size, or request a custom design.
+        </li>
+        <li>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h1.586A2 2 0 017 4.586L9.414 7H16a2 2 0 012 2v6a2 2 0 01-2 2H5a3 3 0 01-3-3V5z"/></svg>
+          <strong>Fast Shipping:</strong> Quick turnaround and reliable delivery.
+        </li>
+        <li>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10A8 8 0 104 10a8 8 0 0014 0zm-8-3a1 1 0 011 1v1h-2V8a1 1 0 011-1zm1 4a1 1 0 10-2 0v2a1 1 0 102 0v-2z" clip-rule="evenodd"/></svg>
+          <strong>Expert Support:</strong> Have questions? Our team is here to help!
+        </li>
+      </ul>
+    </section>
+
+    <!-- <section class="featured-products">
+      <h2>Featured Products</h2>
+       <app-product-grid [products]="featuredProducts"></app-product-grid> 
+    </section> -->
+  </main>
+
+  <aside class="sidebar right">
+    <!-- Right sidebar content (e.g., cart, ads, info) -->
+  </aside>
+</div>
