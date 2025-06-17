@@ -33,7 +33,7 @@ jobs:
           echo "export const environment = {" > src/environments/environment.dev.ts
           echo "  serviceUrl: '${{ secrets.SERVICE_URL }}'," >> src/environments/environment.dev.ts
           echo "  apiKey: '${{ secrets.API_KEY }}'" >> src/environments/environment.dev.ts
-          echo "};" >> src/environments/environment.prod.ts
+          echo "};" >> src/environments/environment.dev.ts
 
       - name: Build Angular app (dev)
         run: npm run build -- --configuration development
