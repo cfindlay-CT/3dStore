@@ -30,12 +30,14 @@ jobs:
 
       - name: Inject production secrets
         run: |
-          echo "export const environment = {" > src/environments/environment.prod.ts
-          echo "  production: true," >> src/environments/environment.prod.ts
-          echo "  serviceUrl: '${{ secrets.SERVICE_URL }}'," >> src/environments/environment.prod.ts
-          echo "  apiKey: '${{ secrets.API_KEY }}'" >> src/environments/environment.prod.ts
-          echo "};" >> src/environments/environment.prod.ts
-
+            for file in src/environments/environment.ts src/environments/environment.dev.ts src/environments/environment.prod.ts; do
+              echo "export const environment = {" > $file
+              echo "  production: false," >> $file
+              echo "  serviceUrl: '${{ secrets.SERVICE_URL }}'," >> $file
+              echo "  apiKey: '${{ secrets.API_KEY }}'" >> $file
+              echo "};" >> $file
+            done
+            
       - name: Build Angular app (Production)
         run: npm run build -- --configuration production
 
