@@ -63,3 +63,9 @@ ehthumbs.db
 .angular/cache/19.2.15/store/
 
 snapshots/
+
+src/environments/environment.dev.ts
+
+src/environments/environment.local.ts
+
+src/environments/
