@@ -1,19 +1,45 @@
-:host
+.product-list-title
+  font-size: 2rem
+  font-weight: bold
   display: flex
-  flex-direction: column
-  justify-content: flex-start
   align-items: center
-  min-height: 100vh
-  text-align: center
-  padding: 1rem
+  gap: 0.5rem
+  margin-bottom: 1rem
 
-  @media (max-width: 600px)
-    min-height: unset
-    height: auto
-    padding: 0.5rem
+  .icon
+    font-size: 2.2rem
 
-ul
-  text-align: left
-  margin: 0 auto 1rem auto
-  display: table // keeps the list compact and centered as a block
+.disclaimer-card
+  background: #fffbe6
+  border-left: 4px solid #ffd700
+  border-radius: 0.5rem
+  padding: 1rem 1.5rem
+  margin-bottom: 2rem
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04)
 
+  h4
+    margin-top: 0
+    color: #b8860b
+
+  ul
+    margin: 0
+    padding-left: 1.2rem
+
+    li
+      margin-bottom: 0.5rem
+      font-size: 1rem
+      display: flex
+      align-items: center
+      gap: 0.5rem
+
+      // Optional: add a subtle icon color
+      &:first-child
+        color: #b8860b
+      &:nth-child(2)
+        color: #4a90e2
+      &:nth-child(3)
+        color: #2d8659
+
+// Optional: add some spacing below the grid if needed
+app-product-grid
+  margin-bottom: 2rem
