@@ -2,31 +2,83 @@
   display: flex
   flex-direction: column
   align-items: center
-  border: 1px solid #ddd
+  border: 1px solid #eee
   padding: 1rem
-  border-radius: 0.5rem
-  max-width: 250px
+  border-radius: 1rem
+  max-width: 260px
+  min-height: 430px // Ensures all cards have the same height
   background: #fff
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06)
+  transition: box-shadow 0.2s
+  position: relative
+  overflow: hidden
 
-  img
-    width: 75%
-    height: auto
-    object-fit: contain
+  &:hover
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13)
+    border-color: #ffd700
+
+  .image-wrapper
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    margin-bottom: 0.75rem
+
+    img
+      width: 85%
+      height: 180px
+      object-fit: contain
+      border-radius: 0.5rem
+      background: #f8f8f8
+
+    .price-badge
+      position: absolute
+      top: 10px
+      right: 18px
+      background: #ffd700
+      color: #222
+      font-weight: bold
+      padding: 0.3rem 0.8rem
+      border-radius: 1rem
+      font-size: 1rem
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07)
+
+  .name
+    min-height: 48px // Ensures consistent title height
+    font-size: 1.1rem
+    font-weight: bold
+    text-align: center
     margin-bottom: 0.5rem
+    color: #222
 
   .details
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+    justify-content: flex-end
     text-align: center
+    width: 100%
 
     .description
       font-size: 1rem
-      margin-bottom: 0.25rem
+      margin-bottom: 0.5rem
+      color: #444
 
-    .price
-      font-weight: bold
-      color: #333
-      margin-bottom: 0.25rem
+    .meta
+      display: flex
+      justify-content: space-between
+      align-items: center
+      font-size: 0.95rem
+      color: #666
+      padding: 0 0.5rem
 
-    .sku
-      font-size: 0.875rem
-      color: #888
+      .size
+        display: flex
+        align-items: center
+        gap: 0.2rem
+
+      .sku
+        display: flex
+        align-items: center
+        gap: 0.2rem

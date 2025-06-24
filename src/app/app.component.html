@@ -1,7 +1,16 @@
-<!-- Top Menu -->
-<app-menu></app-menu>
+<div class="app-container">
+  <app-menu></app-menu>
+  <div class="layout">
+    <aside class="sidebar left">
+      <!-- Left sidebar content (e.g., menu, categories) -->
+    </aside>
 
-<!-- Page Content -->
-<main class="content">
-  <router-outlet></router-outlet>
-</main>
+    <main class="main-content">
+          <router-outlet></router-outlet>
+    </main>
+
+    <aside class="sidebar right">
+      <!-- Right sidebar content (e.g., cart, ads, info) -->
+    </aside>
+  </div>
+</div>

@@ -37,6 +37,18 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                  {
+                    "replace": "src/environments/environment.ts",
+                    "with": "src/environments/environment.local.ts"
+                  }
+                ],
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "outputHashing": "none"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -81,6 +93,9 @@
             },
             "development": {
               "buildTarget": "store:build:development"
+            },
+            "local": {
+              "buildTarget": "store:build:local"
             }
           },
           "defaultConfiguration": "development"

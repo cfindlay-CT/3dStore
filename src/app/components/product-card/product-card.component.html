@@ -1,17 +1,14 @@
 <div class="product-card">
+  <div class="image-wrapper">
+    <img [src]="product.images[0]" alt="Product image" *ngIf="product.images && product.images.length > 0" />
+    <span class="price-badge">${{ product.price.toFixed(2) }}</span>
+  </div>
   <h2 class="name">{{product.name}}</h2>
-  <img [src]="product.images[0]" alt="Product image" *ngIf="product.images && product.images.length > 0" />
-  <!-- <owl-carousel-o [options]="{items: 1, dots: true, nav: true}">
-    <ng-container *ngFor="let img of product.images">
-      <ng-template carouselSlide>
-        <img [src]="img" alt="Product image" />
-      </ng-template>
-    </ng-container>
-  </owl-carousel-o> -->
   <div class="details">
     <p class="description">{{ product.shortDescription }}</p>
-    <p class="price">${{ product.price.toFixed(2) }}</p>
-    <p class="">Size: {{product.size}}</p>
-    <p class="sku">SKU: {{ product.sku}}</p>
+    <div class="meta">
+      <span class="size" title="Print Size">📏 {{product.size}}</span>
+      <span class="sku" title="Stock Keeping Unit">🔖 {{ product.sku}}</span>
+    </div>
   </div>
 </div>
