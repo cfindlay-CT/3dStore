@@ -1,5 +1,7 @@
-.content
-  padding: 2rem
+.app-container
+  min-height: 100vh
+  display: flex
+  flex-direction: column
 
 .layout
   display: grid
@@ -8,15 +10,33 @@
   background: linear-gradient(to bottom, #f9fafb, #e0f7fa)
   font-family: 'Segoe UI', sans-serif
   color: #333
+  flex: 1
+
+  @media (max-width: 900px)
+    grid-template-columns: 1fr
 
 .sidebar
   background-color: #fff
   border-radius: 12px
   padding: 1rem
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+  margin-bottom: 1rem
 
 .main-content
   padding: 2rem
   background-color: #ffffff
   border-radius: 16px
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05)
+  min-height: 60vh
+  display: flex
+  flex-direction: column
+
+.content
+  padding: 2rem
+  flex: 1
+
+@media (max-width: 900px)
+  .main-content
+    padding: 1rem
+  .sidebar
+    padding: 0.5rem
